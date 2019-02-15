@@ -34,11 +34,23 @@ def generate_boxplot(column_names, data):
         plt.show()
 
 
-column_names = ['mpg', 'displacement', 'weight', 'acceleration', 'horsepower', 'model year', 'cylinders']
+def perform_iqr_calc(column_names, data):
+    for name in column_names:
+        dataset = sorted(data[name])
+        q1, q3 = np.percentile(dataset,[25,75])
+        iqr = q3 - q1
+        lower_bound = q1 - (1.5 * iqr)
+        upper_bound = q3 + (1.5 * iqr)
+        print("Lower Bound for " + name + " is: " + str(lower_bound))
+        print("Upper Bound for " + name + " is: " + str(upper_bound))
+
+
+column_names = ['mpg', 'displacement', 'weight', 'acceleration', 'horsepower']
 carData = pd.read_csv('../data/cleaned-auto-mpg.csv')
 
 print_outliers(column_names, carData)
 generate_boxplot(column_names, carData)
+perform_iqr_calc(column_names, carData)
 
 
 

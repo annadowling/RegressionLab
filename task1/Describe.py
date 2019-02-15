@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def transform_origin(df):
-    print("Transform up Origin data")
+    print("Transform Origin data")
     origin = df.pop('origin')
     df['USA'] = (origin == 1)*1
     df['Europe'] = (origin == 2)*1
@@ -30,7 +30,6 @@ carData = pd.read_csv('../data/regression_lab.csv')
 
 print(carData.head(5))
 transform_origin(carData)
-carData.tail()
 
 print(carData.head(5))
 
@@ -42,15 +41,15 @@ carData = cleanup_hp_data(carData)
 
 
 # display stats of the features
-carData.describe()
+print(carData.describe())
 
 # display stats of the mpg: So the minimum value is 9 and maximum is 46, but on average it is 23.44 with a variation of 7.8
 print(carData.mpg.describe())
 
-byMPG = carData.groupby("mpg")
-print(byMPG["mpg"].describe())
+byMPG = carData.groupby('model year')['mpg'].mean()
+print(byMPG)
 
-carData.hist(bins=50, figsize=(20,15))
+carData.hist(bins=50, figsize=(30,20))
 plt.savefig("attribute_histogram_plots")
 plt.show()
 
