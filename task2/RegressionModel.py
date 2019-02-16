@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 
 def estimate_coefficients(x, y):
     # size of the dataset OR number of observations/points
@@ -43,12 +44,25 @@ def plot_regression_line(x, y, b, xlabel, ylabel):
     plt.show()
 
 
+def predict_with_intercept(X, y):
+    # Note the difference in argument order
+    X = sm.add_constant(X) ## let's add an intercept (beta_0) to our model
+
+    # Note the difference in argument order
+    model = sm.OLS(y, X).fit() ## sm.OLS(output, input)
+    predictions = model.predict(X)
+
+    # Print out the statistics
+    print(model.summary())
+
+
+
 def main():
     # Datasets which we create
     df = pd.read_csv('../data/cleaned-auto-mpg.csv')
 
     x = df['horsepower']
-    y = df['mpg']
+    y = df['mpg'] # Y is the variable we are trying to predict
 
     # estimating coefficients
     b = estimate_coefficients(x, y)
@@ -56,6 +70,7 @@ def main():
 
     # plotting regression line
     plot_regression_line(x, y, b, 'horsepower', 'mpg')
+    predict_with_intercept(x, y)
 
 
 if __name__ == "__main__":
