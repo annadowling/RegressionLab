@@ -1,24 +1,62 @@
-import numpy as np;
-import pandas as pd;
-import statsmodels.api as sm;
-import matplotlib.pyplot as plt;
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
-df = pd.read_csv('../data/cleaned-auto-mpg.csv')
+def estimate_coefficients(x, y):
+    # size of the dataset OR number of observations/points
+    n = np.size(x)
 
-X = np.column_stack((df.horsepower,df.weight));
-X = sm.add_constant(X);
+    # mean of x and y
+    # Since we are using numpy just calling mean on numpy is sufficient
+    mean_x, mean_y = np.mean(x), np.mean(y)
 
-print("Predictors");
-print(X);
+    # calculating cross-deviation and deviation about x
+    SS_xy = np.sum(y*x - n*mean_y*mean_x)
+    SS_xx = np.sum(x*x - n*mean_x*mean_x)
 
-print("Outcome");
-print(df.mpg);
+    # calculating regression coefficients
+    b_1 = SS_xy / SS_xx
+    b_0 = mean_y - b_1*mean_x
 
-model = sm.OLS(df.mpg,X);
-results = model.fit();
+    return(b_0, b_1)
 
-print(results.summary());
+    # x,y are the location of points on graph
+    # color of the points change it to red blue orange play around
 
-plt.figure();
-plt.scatter(df.mpg, results.resid);
-plt.show();
+
+
+def plot_regression_line(x, y, b, xlabel, ylabel):
+    # plotting the points as per dataset on a graph
+    plt.scatter(x, y, color = "m",marker = "o", s = 30)
+
+    # predicted response vector
+    y_pred = b[0] + b[1]*x
+
+    # plotting the regression line
+    plt.plot(x, y_pred, color = "g")
+
+    # putting labels for x and y axis
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+
+    # function to show plotted graph
+    plt.show()
+
+
+def main():
+    # Datasets which we create
+    df = pd.read_csv('../data/cleaned-auto-mpg.csv')
+
+    x = df['horsepower']
+    y = df['mpg']
+
+    # estimating coefficients
+    b = estimate_coefficients(x, y)
+    print("Estimated coefficients:\nb_0 = {} \nb_1 = {}".format(b[0], b[1]))
+
+    # plotting regression line
+    plot_regression_line(x, y, b, 'horsepower', 'mpg')
+
+
+if __name__ == "__main__":
+    main()
