@@ -26,7 +26,6 @@ def plot_xy(x, y, label):
     plt.plot(x, y, marker=".", linestyle="none")
     plt.xlabel(label)
     plt.ylabel("Cumulative Distribution Function")
-    plt.show()
 
 
 def generate_sample(data):
@@ -38,7 +37,8 @@ def generate_sample(data):
     plt.show()
 
 
-def normal_test(data):
+def normal_test(data, label):
+    print("Normal test for " + label)
     print(stats.normaltest(data))
 
 
@@ -49,7 +49,7 @@ def execute_normal_distribution_test(column_names, data):
 
         generate_sample(data[name])
 
-        normal_test(data[name])
+        normal_test(data[name], name)
 
 
 carData = pd.read_csv('../data/cleaned-auto-mpg.csv')
