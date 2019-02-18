@@ -52,7 +52,7 @@ def execute_normal_distribution_test(column_names, data):
         normal_test(data[name], name)
 
 
-carData = pd.read_csv('../data/cleaned-auto-mpg.csv')
+carData = pd.read_csv('../data/cleaned-outliers-auto-mpg.csv')
 numeric_column_names = ['mpg', 'displacement', 'weight', 'acceleration', 'horsepower']
 
 execute_normal_distribution_test(numeric_column_names, carData)

@@ -43,7 +43,7 @@ carData = cleanup_hp_data(carData)
 # display stats of the features
 print(carData.describe())
 
-# display stats of the mpg: So the minimum value is 9 and maximum is 46, but on average it is 23.44 with a variation of 7.8
+# display stats of mpg
 print(carData.mpg.describe())
 
 byMPG = carData.groupby('model year')['mpg'].mean()
