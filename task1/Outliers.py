@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+from pandas.api.types import is_numeric_dtype
 
 
 def detect_outlier(data):
@@ -45,12 +46,25 @@ def perform_iqr_calc(column_names, data):
         print("Upper Bound for " + name + " is: " + str(upper_bound))
 
 
+def remove_outliers(column_names, data):
+    low = .05
+    high = .95
+    quant_df = data.quantile([low, high])
+    for name in column_names:
+        if is_numeric_dtype(data[name]):
+            data = data[(data[name] > quant_df.loc[low, name]) & (data[name] < quant_df.loc[high, name])]
+    return data
+
+
 column_names = ['mpg', 'displacement', 'weight', 'acceleration', 'horsepower']
 carData = pd.read_csv('../data/cleaned-auto-mpg.csv')
 
 print_outliers(column_names, carData)
 generate_boxplot(column_names, carData)
 perform_iqr_calc(column_names, carData)
+carData = remove_outliers(column_names, carData)
+
+carData.to_csv('../data/cleaned-outliers-auto-mpg.csv', index=False)
 
 
 
