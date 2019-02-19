@@ -20,8 +20,6 @@ def TestIndependence(df ,colX ,colY):
     print("Expected Array")
     print(expected) # expected array
 
-    dfExpected = pd.DataFrame(expected, columns=dfObserved.columns, index=dfObserved.index)
-
 carData = pd.read_csv('../data/cleaned-outliers-auto-mpg.csv')
 
 TestIndependence(carData, 'model year', 'cylinders')

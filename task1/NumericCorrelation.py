@@ -52,3 +52,4 @@ check_assumptions('mpg', ['displacement', 'weight', 'horsepower'], carData)
 check_assumptions('displacement', ['mpg', 'weight', 'horsepower'], carData)
 check_assumptions('weight', ['displacement', 'mpg', 'horsepower'], carData)
 check_assumptions('horsepower', ['displacement', 'weight', 'mpg'], carData)
+
