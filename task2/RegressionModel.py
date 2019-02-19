@@ -57,31 +57,21 @@ def predict_with_intercept(X, y):
 
 
 
-def main():
+def main(X, Y):
     # Datasets which we create
     df = pd.read_csv('../data/cleaned-outliers-auto-mpg.csv')
 
-    x = df['acceleration']
-    y = df['mpg'] # Y is the variable we are trying to predict
+    x = df[X]
+    y = df[Y] # Y is the variable we are trying to predict
 
     # estimating coefficients
     b = estimate_coefficients(x, y)
     print("Estimated coefficients:\nb_0 = {} \nb_1 = {}".format(b[0], b[1]))
 
     # plotting regression line
-    plot_regression_line(x, y, b, 'acceleration', 'mpg')
+    plot_regression_line(x, y, b, X, Y)
     predict_with_intercept(x, y)
 
 
 if __name__ == "__main__":
-    main()
-
-
-# Linear	Regression:	Assumptions
-# Predictor	Independence:
-# Avoid	Multicollinearity;
-# See	Lecture	3;
-# Normality	of	Residuals	(y-y*):
-# See	lecture	2;
-# Homoscedasticity	of	Residuals	(y-y*);
-# Linear	Dependency	between	X	and	Y.
+    main('horsepower', 'mpg')
