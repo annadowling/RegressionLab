@@ -59,7 +59,7 @@ def predict_with_intercept(X, y):
 
 def main():
     # Datasets which we create
-    df = pd.read_csv('../data/cleaned-auto-mpg.csv')
+    df = pd.read_csv('../data/cleaned-outliers-auto-mpg.csv')
 
     x = df['acceleration']
     y = df['mpg'] # Y is the variable we are trying to predict
