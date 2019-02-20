@@ -51,6 +51,8 @@ def predict_with_intercept(X, y):
     # Note the difference in argument order
     model = sm.OLS(y, X).fit() ## sm.OLS(output, input)
     predictions = model.predict(X)
+    print("Predictions: ")
+    print(predictions[0:5])
 
     # Print out the statistics
     print(model.summary())
