@@ -9,7 +9,9 @@ C
 task1/test.py,a/d/adbc683832779ad66c7ac997e14d81b3c174bc27
 H
 task2/RegressionModel.py,7/9/79569a13c1574a6f5ff886104bb3931f4e73f00d
-K
-task1/CorrelationNumeric.py,7/0/7009ce8fb0aa47519cec447e285b1b371b9f4c4c
+R
+"data/cleaned-outliers-auto-mpg.csv,5/5/5574d58f85d8cc2c9577488f9ba1ed7897d77403
 L
-task1/CorrelationCategory.py,3/d/3d4eae5b3e1031c020354c10f98d33ea442fd4d9
+task1/CategoryCorrelation.py,3/7/373ad132b947e02abe73dea240a998b207c9d964
+K
+task1/NumericCorrelation.py,e/c/ec0f9479778b35065a2bd5a2a10589199d22ed47
