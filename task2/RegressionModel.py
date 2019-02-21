@@ -60,7 +60,6 @@ def predict_with_intercept(X, y):
 
 
 def main(X, Y):
-    # Datasets which we create
     df = pd.read_csv('../data/cleaned-outliers-auto-mpg.csv')
 
     x = df[X]
@@ -71,9 +70,9 @@ def main(X, Y):
     print("Estimated coefficients:\nb_0 = {} \nb_1 = {}".format(b[0], b[1]))
 
     # plotting regression line
-    plot_regression_line(x, y, b, X, Y)
+    #plot_regression_line(x, y, b, X, Y)
     predict_with_intercept(x, y)
 
 
 if __name__ == "__main__":
-    main('horsepower', 'mpg')
+    main(['displacement', 'USA'], 'mpg')
