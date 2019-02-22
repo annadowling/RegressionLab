@@ -5,9 +5,7 @@ import seaborn as sns
 from scipy import stats
 
 
-def empirical_dist_func(data):
-    """Compute ECDF for a one-dimensional array of measurements."""
-
+def distribution_func(data):
     # Number of data points: n
     n = len(data)
 
@@ -30,7 +28,7 @@ def plot_xy(x, y, label):
 
 def generate_sample(data):
     samples = np.random.normal(np.mean(data), np.std(data), size=1000)
-    x_theor, y_theor = empirical_dist_func(samples)
+    x_theor, y_theor = distribution_func(samples)
 
     plt.plot(x_theor, y_theor)
     plt.legend(('Normal Distribution', 'Empirical Data'), loc='lower right')
@@ -44,7 +42,7 @@ def normal_test(data, label):
 
 def execute_normal_distribution_test(column_names, data):
     for name in column_names:
-        x, y = empirical_dist_func(data[name])
+        x, y = distribution_func(data[name])
         plot_xy(x, y, name)
 
         generate_sample(data[name])

@@ -15,7 +15,7 @@ def TestIndependence(df ,colX ,colY):
     print(chi2)
     print("p-value")
     print(p) # p-value
-    print("Degree of Freedom") # The number of independent variates which make up the statistic (eg chi-square) is known as degree of freedom of that statistic.
+    print("Degree of Freedom") # The number of independent variates which make up the statistic (eg chi-square).
     print(dof)
     print("Expected Array")
     print(expected) # expected array
